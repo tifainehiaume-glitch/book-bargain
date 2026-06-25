@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bookbargain
+    ports:
+      - "3001:3000"           
+    volumes:
+      - ../:/app              
+      - /app/node_modules     
+    environment:
+      - NODE_ENV=development
+      - MYSQL_HOST=mysql
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MONGO_URI=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongodb:27017/${MONGO_DATABASE}
+    depends_on:
+      - mysql
+      - mongodb
+    networks:
+      - bookbargain_network
+
+  mysql:
+    image: mysql:8.0
+    container_name: bookbargain_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql          
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql  
+    networks:
+      - bookbargain_network
+
+  mongodb:
+    image: mongo:7
+    container_name: bookbargain_mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db               
+      - ./mongodb/init.js:/docker-entrypoint-initdb.d/init.js  
+    networks:
+      - bookbargain_network
+
+volumes:
+  mysql_data:
+  mongo_data:
+
+networks:
+  bookbargain_network:
+    driver: bridge
