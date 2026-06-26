@@ -15,11 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-// ── Routes API ────────────────────────────────────────────────
-// app.use('/api/users',   require('./backend/routes/userRoutes'));
-// app.use('/api/livres',  require('./backend/routes/livreRoutes'));
-// app.use('/api/echanges',require('./backend/routes/echangeRoutes'));
-// (décommentées au fur et à mesure qu'on crée les routes)
+/* routes API */
+app.use('/api/users',    require('./backend/routes/userRoutes'));
+app.use('/api/livres',   require('./backend/routes/livreRoutes'));
+app.use('/api/echanges', require('./backend/routes/echangeRoutes'));
+app.use('/api/avis',     require('./backend/routes/avisRoutes'));
 
 app.get('/api', (req, res) => {
     res.json({ message: 'API Book Bargain fonctionne !' });
