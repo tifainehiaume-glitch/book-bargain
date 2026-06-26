@@ -1,0 +1,414 @@
+/* Variables */
+:root {
+    --cream:      #F5EFE3;
+    --bordeaux:   #741D28;
+    --rose:       #FFD2D9;
+    --orange:     #F08A59;
+    --green:      #2E4A38;
+    --text:       #1A1208;
+    --text-mid:   #5A4A3A;
+    --white:      #FFFBF5;
+    --border:     rgba(26, 18, 8, 0.12);
+ 
+    /* Couleurs par genre */
+    --g-roman:    #741D28;
+    --g-sf:       #2E4A38;
+    --g-jeunesse: #F08A59;
+    --g-manga:    #9A2060;
+    --g-bd:       #4A2A7A;
+    --g-essai:    #8A8A2A;
+}
+ 
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+/* Body */
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+}
+ 
+/*  TYPOGRAPHIE  */
+ 
+.section-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--text);
+}
+ 
+.eyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+}
+ 
+/*  NAVIGATION  */
+ 
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1.5px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+ 
+.nav-logo {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--bordeaux);
+    text-decoration: none;
+}
+ 
+.nav-logo em {
+    color: var(--green);
+    font-style: normal;
+}
+ 
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+}
+ 
+.nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+ 
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--bordeaux);
+}
+ 
+.btn-nav {
+    background: var(--bordeaux);
+    color: var(--cream);
+    padding: 0.45rem 1.2rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+ 
+/*  BOUTONS  */
+ 
+.btn {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.75rem 1.8rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+ 
+.btn-primary {
+    background: var(--bordeaux);
+    color: var(--cream);
+}
+ 
+.btn-primary:hover {
+    background: var(--green);
+    transform: translateY(-1px);
+}
+ 
+.btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1.5px solid var(--border);
+}
+ 
+.btn-outline:hover {
+    border-color: var(--bordeaux);
+    color: var(--bordeaux);
+}
+ 
+.btn-full {
+    width: 100%;
+}
+ 
+/*  FORMULAIRES  */
+ 
+.field {
+    margin-bottom: 1rem;
+}
+ 
+.field label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 0.35rem;
+}
+ 
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+ 
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: var(--bordeaux);
+}
+ 
+.field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+ 
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+ 
+/*  CARDS  */
+ 
+.card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+ 
+/*  COUVERTURES DE LIVRES  */
+ 
+.book-cover {
+    height: 170px;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+ 
+/* Dégradé sombre en bas pour lisibilité du titre */
+.book-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.45) 0%, transparent 55%);
+}
+ 
+/* Tranche du livre */
+.book-cover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 11px;
+    background: rgba(0, 0, 0, 0.2);
+}
+ 
+.cover-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: white;
+    position: relative;
+    z-index: 1;
+    line-height: 1.2;
+}
+ 
+/* Couleurs de fond par genre */
+.g-roman    { background: var(--g-roman); }
+.g-sf       { background: var(--g-sf); }
+.g-jeunesse { background: var(--g-jeunesse); }
+.g-manga    { background: var(--g-manga); }
+.g-bd       { background: var(--g-bd); }
+.g-essai    { background: var(--g-essai); }
+ 
+/*  BADGES GENRE  */
+ 
+.tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    border-radius: 999px;
+}
+ 
+.tag-roman    { background: #F3D0D3; color: var(--g-roman); }
+.tag-sf       { background: #C8D9CE; color: var(--g-sf); }
+.tag-jeunesse { background: #FCDEC8; color: #7A3010; }
+.tag-manga    { background: #EACAD8; color: var(--g-manga); }
+.tag-bd       { background: #D8CAEA; color: var(--g-bd); }
+.tag-essai    { background: #E4E4BE; color: var(--g-essai); }
+ 
+/*  MODALS  */
+ 
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 18, 8, 0.55);
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+ 
+.modal-overlay.active {
+    display: flex;
+}
+ 
+.modal {
+    background: var(--cream);
+    border-radius: 18px;
+    padding: 2.2rem;
+    max-width: 440px;
+    width: 90%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+ 
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    cursor: pointer;
+}
+ 
+.modal-close:hover {
+    color: var(--bordeaux);
+}
+ 
+.modal h3 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+}
+ 
+.modal p {
+    font-size: 0.83rem;
+    color: var(--text-mid);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+ 
+.modal-note {
+    background: var(--rose);
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.75rem;
+    color: var(--bordeaux);
+    margin-bottom: 1.2rem;
+}
+ 
+/*  ONGLETS  */
+ 
+.tabs {
+    display: flex;
+    border-bottom: 1.5px solid var(--border);
+}
+ 
+.tab {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.6rem 0;
+    margin-right: 2.5rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--text-mid);
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -1.5px;
+    transition: color 0.2s, border-color 0.2s;
+}
+ 
+.tab.active {
+    color: var(--bordeaux);
+    border-bottom-color: var(--bordeaux);
+}
+ 
+.tab-count {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 700;
+    background: var(--rose);
+    color: var(--bordeaux);
+    padding: 1px 6px;
+    border-radius: 999px;
+    margin-left: 0.3rem;
+}
+ 
+/*  UTILITAIRES  */
+ 
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 1.5rem; }
+.mt-3 { margin-top: 2.5rem; }
+.text-mid { color: var(--text-mid); }
+.text-sm  { font-size: 0.82rem; }
+ 
+/*  RESPONSIVE  */
+ 
+@media (max-width: 768px) {
+    nav {
+        padding: 0 1.2rem;
+    }
+ 
+    .nav-links li:not(:last-child) {
+        display: none;
+    }
+ 
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+}

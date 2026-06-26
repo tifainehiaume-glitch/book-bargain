@@ -1,0 +1,149 @@
+/*  EN-TÊTE  */
+ 
+.cat-header {
+    padding: 3rem 2.5rem 2rem;
+}
+ 
+.cat-header h1 {
+    margin-bottom: 0.5rem;
+}
+ 
+/*  BARRE DE RECHERCHE  */
+ 
+.search-bar {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 500px;
+    margin-top: 1.5rem;
+}
+ 
+.search-bar input {
+    flex: 1;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+ 
+.search-bar input:focus {
+    border-color: var(--bordeaux);
+}
+ 
+.search-bar button {
+    background: var(--bordeaux);
+    color: var(--cream);
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+ 
+/*  FILTRES GENRE  */
+ 
+.genre-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    padding: 0 2.5rem 2rem;
+}
+ 
+.gpill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+ 
+.gpill.active,
+.gpill:hover {
+    background: var(--bordeaux);
+    border-color: var(--bordeaux);
+    color: var(--cream);
+}
+ 
+/*  GRILLE DE LIVRES  */
+ 
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    padding: 0 2.5rem 4rem;
+}
+ 
+.book-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+ 
+.book-card:hover {
+    transform: translateY(-4px);
+}
+ 
+.book-info {
+    padding: 0.9rem;
+}
+ 
+.book-author {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    margin-bottom: 0.5rem;
+}
+ 
+.book-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.book-city {
+    font-size: 0.7rem;
+    color: #AAA;
+}
+ 
+.btn-swap {
+    width: 100%;
+    margin-top: 0.7rem;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text-mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.45rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+ 
+.btn-swap:hover {
+    background: var(--bordeaux);
+    border-color: var(--bordeaux);
+    color: var(--cream);
+}
+ 
+/*  RESPONSIVE  */
+ 
+@media (max-width: 768px) {
+    .books-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 0 1.2rem 3rem;
+    }
+ 
+    .cat-header,
+    .genre-row {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+    }
+}

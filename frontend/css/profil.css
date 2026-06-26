@@ -1,0 +1,134 @@
+/*  EN-TÊTE PROFIL  */
+ 
+.profile-header {
+    background: var(--green);
+    padding: 3rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+ 
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bordeaux);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--cream);
+    flex-shrink: 0;
+}
+ 
+.profile-info h1 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.2rem;
+}
+ 
+.profile-info p {
+    font-size: 0.85rem;
+    color: rgba(245, 239, 227, 0.6);
+    font-weight: 300;
+}
+ 
+/* ── STATISTIQUES ── */
+ 
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+    margin-left: auto;
+}
+ 
+.ps-n {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: var(--rose);
+    line-height: 1;
+}
+ 
+.ps-l {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 227, 0.45);
+    margin-top: 2px;
+}
+ 
+/*  FORMULAIRES  */
+ 
+.profile-body {
+    padding: 3rem 2.5rem;
+    max-width: 600px;
+}
+ 
+.section-h {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1.4rem;
+}
+ 
+.divider {
+    height: 1.5px;
+    background: var(--border);
+    margin: 2.5rem 0;
+}
+ 
+.btn-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+ 
+/*  SUPPRESSION DU COMPTE  */
+ 
+.btn-danger {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: transparent;
+    color: #B00020;
+    border: 1.5px solid #B00020;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+ 
+.btn-danger:hover {
+    background: #B00020;
+    color: white;
+}
+ 
+/*  RESPONSIVE  */
+ 
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+ 
+    .profile-stats {
+        margin-left: 0;
+    }
+ 
+    .profile-body {
+        padding: 2rem 1.2rem;
+    }
+}

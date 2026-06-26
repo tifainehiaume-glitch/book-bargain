@@ -1,0 +1,104 @@
+/* Body */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+ 
+/* Zone centrale */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+}
+ 
+.auth-box {
+    width: 100%;
+    max-width: 420px;
+}
+ 
+/*  ONGLETS  */
+ 
+.auth-tabs {
+    display: flex;
+    border-bottom: 1.5px solid var(--border);
+    margin-bottom: 2rem;
+}
+ 
+.auth-tab {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 0.6rem 0;
+    margin-right: 2rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--text-mid);
+    border-bottom: 2.5px solid transparent;
+    margin-bottom: -1.5px;
+    transition: color 0.2s, border-color 0.2s;
+}
+ 
+.auth-tab.active {
+    color: var(--bordeaux);
+    border-bottom-color: var(--bordeaux);
+}
+ 
+/*  PANNEAUX  */
+ 
+.form-panel {
+    display: none;
+}
+ 
+.form-panel.active {
+    display: block;
+}
+ 
+/*  TITRES  */
+ 
+.form-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.9rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+}
+ 
+.form-sub {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 1.8rem;
+    font-weight: 300;
+}
+ 
+/*  LIEN MOT DE PASSE OUBLIÉ  */
+ 
+.forgot {
+    font-size: 0.78rem;
+    color: var(--bordeaux);
+    display: block;
+    text-align: right;
+    margin-top: 0.3rem;
+    text-decoration: none;
+}
+ 
+/*  MENTIONS LÉGALES  */
+ 
+.terms {
+    font-size: 0.73rem;
+    color: var(--text-mid);
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+ 
+.terms a {
+    color: var(--bordeaux);
+    text-decoration: none;
+}

@@ -1,0 +1,193 @@
+/*  FIL D'ARIANE  */
+ 
+.breadcrumb {
+    padding: 1.2rem 2.5rem;
+    font-size: 0.78rem;
+    color: var(--text-mid);
+}
+ 
+.breadcrumb a {
+    color: var(--bordeaux);
+    text-decoration: none;
+}
+ 
+/*  LAYOUT PRINCIPAL  */
+ 
+.book-hero {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3.5rem;
+    padding: 1rem 2.5rem 4rem;
+    max-width: 900px;
+}
+ 
+/*  COUVERTURE GRANDE TAILLE  */
+ 
+.cover-big {
+    width: 100%;
+    aspect-ratio: 2/3;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(46, 74, 56, 0.3);
+}
+ 
+.cover-big::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 55%);
+}
+ 
+.cover-big::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    background: rgba(0, 0, 0, 0.2);
+}
+ 
+.cover-big .cover-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: white;
+    position: relative;
+    z-index: 1;
+    line-height: 1.1;
+}
+ 
+/*  DÉTAILS DU LIVRE  */
+ 
+.detail {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    padding-top: 0.5rem;
+}
+ 
+.book-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 2.4rem;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+ 
+.book-author {
+    font-size: 1rem;
+    color: var(--text-mid);
+    font-weight: 400;
+}
+ 
+.meta-row {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+ 
+.meta-chip {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+ 
+.etat-badge {
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--rose);
+    color: var(--bordeaux);
+    padding: 3px 12px;
+    border-radius: 999px;
+    display: inline-block;
+}
+ 
+/*  DESCRIPTION  */
+ 
+.description {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-mid);
+    padding-top: 1.2rem;
+    border-top: 1.5px solid var(--border);
+}
+ 
+.desc-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 0.5rem;
+}
+ 
+/*  CARTE PROPRIÉTAIRE  */
+ 
+.owner-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+}
+ 
+.owner-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--cream);
+    flex-shrink: 0;
+}
+ 
+.owner-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+ 
+.owner-sub {
+    font-size: 0.73rem;
+    color: var(--text-mid);
+}
+ 
+/*  NOTE DE SÉCURITÉ  */
+ 
+.safety-note {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    text-align: center;
+    line-height: 1.5;
+}
+ 
+/*  RESPONSIVE  */
+ 
+@media (max-width: 768px) {
+    .book-hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem 1.2rem 3rem;
+    }
+ 
+    .breadcrumb {
+        padding: 1rem 1.2rem;
+    }
+}
