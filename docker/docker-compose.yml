@@ -4,8 +4,8 @@ services:
 
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: bookbargain
     ports:
       - "3001:3000"           
