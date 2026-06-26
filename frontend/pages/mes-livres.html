@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Bargain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/mes-livres.css">
+</head>
+<body>
+
+  <!--  NAVIGATION  -->
+  <nav>
+    <a class="nav-logo" href="index.html">Book<em>Bargain</em></a>
+    <ul class="nav-links">
+      <li><a href="catalogue.html">Parcourir</a></li>
+      <li><a href="mes-livres.html" class="active">Mes livres</a></li>
+      <li><a href="profil.html">Mon profil</a></li>
+      <li><a href="connexion.html" class="btn-nav">Se déconnecter</a></li>
+    </ul>
+  </nav>
+
+  <!--  EN-TÊTE  -->
+  <div class="page-header">
+    <h1 class="section-title">Mes livres</h1>
+    <button class="btn btn-primary"
+            onclick="document.getElementById('modal-propose').classList.add('active')">
+      + Proposer un livre
+    </button>
+  </div>
+
+  <!--  ONGLETS  -->
+  <div class="tabs">
+    <button class="tab active" onclick="sw(0)">Mes livres <span class="tab-count">7</span></button>
+    <button class="tab" onclick="sw(1)">Échanges en cours <span class="tab-count">2</span></button>
+  </div>
+
+  <!--  PANNEAU 1 : MES LIVRES  -->
+  <div class="tab-panel active" id="tp-0">
+    <div class="books-grid">
+      <div class="card"><div class="book-cover g-roman"><span class="cover-title">L'Alchimiste</span></div><div class="book-info"><p class="book-author">Paulo Coelho</p><div class="book-foot"><span class="status-badge s-dispo">Disponible</span></div><div class="book-actions"><button class="btn-xs">Modifier</button><button class="btn-xs">Retirer</button></div></div></div>
+      <div class="card"><div class="book-cover g-sf"><span class="cover-title">La Horde du Contrevent</span></div><div class="book-info"><p class="book-author">Alain Damasio</p><div class="book-foot"><span class="status-badge s-attente">Demande reçue</span></div><div class="book-actions"><button class="btn-xs">Voir</button></div></div></div>
+      <div class="card"><div class="book-cover g-manga"><span class="cover-title">Naruto T.3</span></div><div class="book-info"><p class="book-author">Masashi Kishimoto</p><div class="book-foot"><span class="status-badge s-echange">Échangé ✓</span></div></div></div>
+      <div class="card"><div class="book-cover g-essai"><span class="cover-title">Sapiens</span></div><div class="book-info"><p class="book-author">Y. N. Harari</p><div class="book-foot"><span class="status-badge s-dispo">Disponible</span></div><div class="book-actions"><button class="btn-xs">Modifier</button><button class="btn-xs">Retirer</button></div></div></div>
+      <div class="card"><div class="book-cover g-jeunesse"><span class="cover-title">Harry Potter T.2</span></div><div class="book-info"><p class="book-author">J.K. Rowling</p><div class="book-foot"><span class="status-badge s-dispo">Disponible</span></div><div class="book-actions"><button class="btn-xs">Modifier</button><button class="btn-xs">Retirer</button></div></div></div>
+      <div class="card"><div class="book-cover" style="background:#1A1A2A;"><span class="cover-title">1984</span></div><div class="book-info"><p class="book-author">George Orwell</p><div class="book-foot"><span class="status-badge s-dispo">Disponible</span></div><div class="book-actions"><button class="btn-xs">Modifier</button><button class="btn-xs">Retirer</button></div></div></div>
+      <div class="add-card" onclick="document.getElementById('modal-propose').classList.add('active')">
+        <span>＋</span><p>Ajouter un livre</p>
+      </div>
+    </div>
+  </div>
+
+  <!--  PANNEAU 2 : ÉCHANGES EN COURS  -->
+  <div class="tab-panel" id="tp-1">
+    <div class="exchanges">
+      <div class="exc-card">
+        <div class="exc-covers"><div class="exc-cover g-sf"></div><span class="exc-arrow">⇄</span><div class="exc-cover g-roman"></div></div>
+        <div class="exc-info"><h4>La Horde du Contrevent ⇄ Dune</h4><p>Demande de <strong>Thomas R.</strong> · Paris · Il y a 2 jours</p><span class="exc-badge exc-pending">En attente de ta réponse</span></div>
+        <div class="exc-actions"><button class="btn-accept">Accepter</button><button class="btn-decline">Refuser</button></div>
+      </div>
+      <div class="exc-card">
+        <div class="exc-covers"><div class="exc-cover g-jeunesse"></div><span class="exc-arrow">⇄</span><div class="exc-cover" style="background:#1A1A2A;"></div></div>
+        <div class="exc-info"><h4>Harry Potter T.2 ⇄ 1984</h4><p>Demande de <strong>Sophie L.</strong> · Lyon · Il y a 5 jours</p><span class="exc-badge exc-accepted">Accepté · 📍 Place Bellecour, 28 juin 14h30</span></div>
+        <div class="exc-actions"><button class="btn-accept">C'est fait ✓</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!--  MODAL PROPOSER UN LIVRE  -->
+  <div class="modal-overlay" id="modal-propose"
+       onclick="if(event.target===this)this.classList.remove('active')">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('modal-propose').classList.remove('active')">Fermer ✕</button>
+      <h3>Proposer un livre</h3>
+      <p>Mets ton livre à disposition de la communauté.</p>
+      <div class="mrow">
+        <div class="mfield"><label for="p-titre">Titre *</label><input type="text" id="p-titre" placeholder="Ex : Dune"></div>
+        <div class="mfield"><label for="p-auteur">Auteur·ice *</label><input type="text" id="p-auteur" placeholder="Ex : Frank Herbert"></div>
+      </div>
+      <div class="mrow">
+        <div class="mfield"><label for="p-genre">Genre *</label><select id="p-genre"><option value="" disabled selected>Choisir…</option><option>Roman</option><option>Science-fiction</option><option>Jeunesse / YA</option><option>Manga</option><option>BD</option><option>Essai</option></select></div>
+        <div class="mfield"><label for="p-ville">Ville *</label><input type="text" id="p-ville" placeholder="Lyon"></div>
+      </div>
+      <div class="mfield"><label>État *</label>
+        <div class="etat-group">
+          <div class="etat-pill" onclick="selEtat(this)">✨ Neuf</div>
+          <div class="etat-pill sel" onclick="selEtat(this)">👍 Très bon</div>
+          <div class="etat-pill" onclick="selEtat(this)">👌 Bon</div>
+          <div class="etat-pill" onclick="selEtat(this)">📖 Acceptable</div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full mt-2"
+              onclick="this.closest('.modal-overlay').classList.remove('active')">
+        Publier mon livre
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function sw(i) {
+      document.querySelectorAll('.tab').forEach((t, j) => t.classList.toggle('active', i===j));
+      document.querySelectorAll('.tab-panel').forEach((p, j) => p.classList.toggle('active', i===j));
+    }
+    function selEtat(el) {
+      document.querySelectorAll('.etat-pill').forEach(p => p.classList.remove('sel'));
+      el.classList.add('sel');
+    }
+  </script>
+
+</body>
+</html>

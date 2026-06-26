@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Bargain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+ 
+  <!--  NAVIGATION  -->
+  <nav>
+    <a class="nav-logo" href="index.html">Book<em>Bargain</em></a>
+    <ul class="nav-links">
+      <li><a href="catalogue.html">Parcourir</a></li>
+      <li><a href="mes-livres.html">Mes livres</a></li>
+      <li><a href="profil.html">Mon profil</a></li>
+      <li><a href="connexion.html" class="btn-nav">Se connecter</a></li>
+    </ul>
+  </nav>
+ 
+  <!--  HERO  -->
+  <section class="hero">
+    <p class="eyebrow">Échange de livres · Gratuit</p>
+    <h1 class="section-title">
+      Donne une <span class="c-bordeaux">nouvelle vie</span><br>
+      à tes <span class="c-green">livres</span>
+    </h1>
+    <p class="hero-sub">
+      Échange tes livres avec des passionné·e·s près de chez toi.
+      Sans argent, sans messagerie.
+    </p>
+    <div class="hero-actions">
+      <a href="catalogue.html" class="btn btn-primary">Parcourir les livres</a>
+      <a href="connexion.html" class="btn btn-outline">Rejoindre</a>
+    </div>
+    <div class="hero-stats">
+      <div><p class="stat-n">1 240</p><p class="stat-l">Livres disponibles</p></div>
+      <div><p class="stat-n">382</p><p class="stat-l">Échanges réalisés</p></div>
+      <div><p class="stat-n">5</p><p class="stat-l">Villes</p></div>
+    </div>
+  </section>
+ 
+  <!--  COMMENT ÇA MARCHE  -->
+  <section class="how">
+    <div style="max-width:900px;margin:0 auto;">
+      <p class="eyebrow">Le processus</p>
+      <h2 class="section-title">En 3 étapes</h2>
+      <div class="how-grid">
+        <div class="how-card"><p class="how-num">01</p><h3>Dépose un livre</h3><p>Ajoute les livres que tu ne lis plus avec ton code postal.</p></div>
+        <div class="how-card"><p class="how-num">02</p><h3>Trouve un échange</h3><p>Parcours les livres disponibles et propose un échange.</p></div>
+        <div class="how-card"><p class="how-num">03</p><h3>Rencontrez-vous</h3><p>Convenez d'un lieu public pour échanger vos livres.</p></div>
+      </div>
+    </div>
+  </section>
+ 
+  <!--  APERÇU DES LIVRES  -->
+  <section class="books-preview">
+    <div class="books-header">
+      <h2 class="section-title">Livres disponibles</h2>
+      <a href="catalogue.html" class="btn btn-outline">Voir tout</a>
+    </div>
+    <div class="books-grid">
+      <div class="card book-card" onclick="window.location='fiche-livre.html'">
+        <div class="book-cover g-roman"><span class="cover-title">L'Alchimiste</span></div>
+        <div class="book-info"><p class="book-author">Paulo Coelho</p><div class="book-foot"><span class="tag tag-roman">Roman</span><span class="book-city">📍 Lyon</span></div><button class="btn-swap">Proposer un échange</button></div>
+      </div>
+      <div class="card book-card" onclick="window.location='fiche-livre.html'">
+        <div class="book-cover g-sf"><span class="cover-title">Dune</span></div>
+        <div class="book-info"><p class="book-author">Frank Herbert</p><div class="book-foot"><span class="tag tag-sf">SF</span><span class="book-city">📍 Paris</span></div><button class="btn-swap">Proposer un échange</button></div>
+      </div>
+      <div class="card book-card" onclick="window.location='fiche-livre.html'">
+        <div class="book-cover g-manga"><span class="cover-title">Naruto T.1</span></div>
+        <div class="book-info"><p class="book-author">Masashi Kishimoto</p><div class="book-foot"><span class="tag tag-manga">Manga</span><span class="book-city">📍 Nantes</span></div><button class="btn-swap">Proposer un échange</button></div>
+      </div>
+      <div class="card book-card" onclick="window.location='fiche-livre.html'">
+        <div class="book-cover g-jeunesse"><span class="cover-title">Harry Potter T.1</span></div>
+        <div class="book-info"><p class="book-author">J.K. Rowling</p><div class="book-foot"><span class="tag tag-jeunesse">Jeunesse</span><span class="book-city">📍 Lyon</span></div><button class="btn-swap">Proposer un échange</button></div>
+      </div>
+    </div>
+  </section>
+ 
+  <!--  SÉCURITÉ  -->
+  <div class="safety">
+    <div>
+      <h2 class="safety-title">Échanges<br><em>sécurisés</em></h2>
+      <p>Sans messagerie intégrée, sans données bancaires. Tout est pensé pour des rencontres simples et sûres.</p>
+    </div>
+    <div class="safety-items">
+      <div class="safety-item"><span>🔒</span><div><h4>Email masqué</h4><p>Transmis uniquement après acceptation mutuelle.</p></div></div>
+      <div class="safety-item"><span>📍</span><div><h4>Lieu public</h4><p>Le propriétaire choisit un endroit de rencontre.</p></div></div>
+      <div class="safety-item"><span>🚫</span><div><h4>Zéro paiement</h4><p>Aucune donnée bancaire, 100% gratuit.</p></div></div>
+    </div>
+  </div>
+ 
+  <!--  FOOTER  -->
+  <footer>
+    <p class="foot-logo">Book<em>Bargain</em></p>
+    <p>© 2025 · Projet étudiant</p>
+  </footer>
+ 
+</body>
+</html>

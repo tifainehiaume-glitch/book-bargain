@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Bargain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/catalogue.css">
+</head>
+<body>
+
+  <!--  NAVIGATION  -->
+  <nav>
+    <a class="nav-logo" href="index.html">Book<em>Bargain</em></a>
+    <ul class="nav-links">
+      <li><a href="catalogue.html" class="active">Parcourir</a></li>
+      <li><a href="mes-livres.html">Mes livres</a></li>
+      <li><a href="profil.html">Mon profil</a></li>
+      <li><a href="connexion.html" class="btn-nav">Se connecter</a></li>
+    </ul>
+  </nav>
+
+  <!--  EN-TÊTE + RECHERCHE  -->
+  <div class="cat-header">
+    <p class="eyebrow">Catalogue</p>
+    <h1 class="section-title">Livres disponibles</h1>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Titre, auteur, genre…">
+      <button onclick="rechercher()">Rechercher</button>
+    </div>
+  </div>
+
+  <!--  FILTRES PAR GENRE  -->
+  <div class="genre-row">
+    <button class="gpill active" onclick="filtrer('')">Tous</button>
+    <button class="gpill" onclick="filtrer('roman')">Roman</button>
+    <button class="gpill" onclick="filtrer('sf')">SF</button>
+    <button class="gpill" onclick="filtrer('jeunesse')">Jeunesse</button>
+    <button class="gpill" onclick="filtrer('manga')">Manga</button>
+    <button class="gpill" onclick="filtrer('bd')">BD</button>
+    <button class="gpill" onclick="filtrer('essai')">Essai</button>
+  </div>
+
+  <!--  GRILLE DE LIVRES  -->
+  <div class="books-grid" id="books-grid">
+    <div class="card book-card" onclick="window.location='fiche-livre.html'">
+      <div class="book-cover g-roman"><span class="cover-title">L'Alchimiste</span></div>
+      <div class="book-info"><p class="book-author">Paulo Coelho</p><div class="book-foot"><span class="tag tag-roman">Roman</span><span class="book-city">📍 Lyon</span></div><button class="btn-swap">Proposer un échange</button></div>
+    </div>
+    <div class="card book-card" onclick="window.location='fiche-livre.html'">
+      <div class="book-cover g-sf"><span class="cover-title">Dune</span></div>
+      <div class="book-info"><p class="book-author">Frank Herbert</p><div class="book-foot"><span class="tag tag-sf">SF</span><span class="book-city">📍 Paris</span></div><button class="btn-swap">Proposer un échange</button></div>
+    </div>
+    <div class="card book-card" onclick="window.location='fiche-livre.html'">
+      <div class="book-cover g-sf"><span class="cover-title">La Horde du Contrevent</span></div>
+      <div class="book-info"><p class="book-author">Alain Damasio</p><div class="book-foot"><span class="tag tag-sf">SF</span><span class="book-city">📍 Bordeaux</span></div><button class="btn-swap">Proposer un échange</button></div>
+    </div>
+    <div class="card book-card" onclick="window.location='fiche-livre.html'">
+      <div class="book-cover g-roman"><span class="cover-title">Les Misérables</span></div>
+      <div class="book-info"><p class="book-author">Victor Hugo</p><div class="book-foot"><span class="tag tag-roman">Roman</span><span class="book-city">📍 Marseille</span></div><button class="btn-swap">Proposer un échange</button></div>
+    </div>
+    <div class="card book-card" onclick="window.location='fiche-livre.html'">
+      <div class="book-cover g-manga"><span class="cover-title">Naruto T.1</span></div>
+      <div class="book-info"><p class="book-author">Masashi Kishimoto</p><div class="book-foot"><span class="tag tag-manga">Manga</span><span class="book-city">📍 Nantes</span></div><button class="btn-swap">Proposer un échange</button></div>
+    </div>
+    <div class="card book-card" onclick="window.location='fiche-livre.html'">
+      <div class="book-cover g-roman" style="background:#1A1A2A;"><span class="cover-title">1984</span></div>
+      <div class="book-info"><p class="book-author">George Orwell</p><div class="book-foot"><span class="tag tag-roman">Roman</span><span class="book-city">📍 Paris</span></div><button class="btn-swap">Proposer un échange</button></div>
+    </div>
+    <div class="card book-card" onclick="window.location='fiche-livre.html'">
+      <div class="book-cover g-jeunesse"><span class="cover-title">Harry Potter T.1</span></div>
+      <div class="book-info"><p class="book-author">J.K. Rowling</p><div class="book-foot"><span class="tag tag-jeunesse">Jeunesse</span><span class="book-city">📍 Lyon</span></div><button class="btn-swap">Proposer un échange</button></div>
+    </div>
+    <div class="card book-card" onclick="window.location='fiche-livre.html'">
+      <div class="book-cover g-essai"><span class="cover-title">Fondation</span></div>
+      <div class="book-info"><p class="book-author">Isaac Asimov</p><div class="book-foot"><span class="tag tag-sf">SF</span><span class="book-city">📍 Toulouse</span></div><button class="btn-swap">Proposer un échange</button></div>
+    </div>
+  </div>
+
+  <script>
+    /* Filtres genre */
+    function filtrer(genre) {
+      document.querySelectorAll('.gpill').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      // TODO : appel API GET /api/livres?genre=...
+    }
+
+    /* Recherche */
+    function rechercher() {
+      const query = document.getElementById('search-input').value;
+      // TODO : appel API GET /api/livres?search=...
+    }
+  </script>
+
+</body>
+</html>
