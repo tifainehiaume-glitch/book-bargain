@@ -1,0 +1,307 @@
+/*  EN-TÊTE  */
+ 
+.page-header {
+    padding: 3rem 2.5rem 2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+ 
+/*  ONGLETS  */
+ 
+.tabs {
+    padding: 0 2.5rem;
+}
+ 
+.tab-panel {
+    display: none;
+    padding: 2rem 2.5rem 4rem;
+}
+ 
+.tab-panel.active {
+    display: block;
+}
+ 
+/*  GRILLE DE LIVRES  */
+ 
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+}
+ 
+.book-info {
+    padding: 0.9rem;
+}
+ 
+.book-author {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    margin-bottom: 0.5rem;
+}
+ 
+.book-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+/*  BADGES STATUT  */
+ 
+.status-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+ 
+.s-dispo   { background: #C8D9CE; color: var(--g-sf); }
+.s-attente { background: #FCDEC8; color: #7A3010; }
+.s-echange { background: var(--rose); color: var(--bordeaux); }
+ 
+/*  ACTIONS SUR LES LIVRES  */
+ 
+.book-actions {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+}
+ 
+.btn-xs {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+ 
+.btn-xs:hover {
+    border-color: var(--bordeaux);
+    color: var(--bordeaux);
+}
+ 
+/*  CARTE AJOUTER UN LIVRE  */
+ 
+.add-card {
+    border: 2px dashed rgba(26, 18, 8, 0.18);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    min-height: 220px;
+    transition: border-color 0.2s;
+}
+ 
+.add-card:hover {
+    border-color: var(--bordeaux);
+}
+ 
+.add-card span {
+    font-size: 2rem;
+    color: rgba(26, 18, 8, 0.2);
+}
+ 
+.add-card p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+}
+ 
+/*  ÉCHANGES EN COURS  */
+ 
+.exchanges {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+ 
+.exc-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 1.4rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+}
+ 
+.exc-covers {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+ 
+.exc-cover {
+    width: 50px;
+    height: 65px;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+ 
+/* Tranche du livre miniature */
+.exc-cover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background: rgba(0, 0, 0, 0.2);
+}
+ 
+.exc-arrow {
+    font-size: 1.2rem;
+    color: var(--text-mid);
+}
+ 
+.exc-info h4 {
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.2rem;
+}
+ 
+.exc-info p {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    font-weight: 300;
+}
+ 
+.exc-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-top: 0.4rem;
+}
+ 
+.exc-pending  { background: #FCDEC8; color: #7A3010; }
+.exc-accepted { background: #C8D9CE; color: var(--green); }
+ 
+.exc-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+ 
+.btn-accept {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: var(--green);
+    color: var(--cream);
+    border: none;
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+ 
+.btn-decline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: transparent;
+    color: var(--text-mid);
+    border: 1.5px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+ 
+/*  MODAL PROPOSER UN LIVRE  */
+ 
+.mfield {
+    margin-bottom: 1rem;
+}
+ 
+.mfield label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 0.35rem;
+}
+ 
+.mfield input,
+.mfield select {
+    width: 100%;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    padding: 0.7rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+ 
+.mfield input:focus,
+.mfield select:focus {
+    border-color: var(--bordeaux);
+}
+ 
+.mrow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+ 
+/* Sélection état du livre */
+.etat-group {
+    display: flex;
+    gap: 0.4rem;
+}
+ 
+.etat-pill {
+    flex: 1;
+    text-align: center;
+    padding: 0.45rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    color: var(--text-mid);
+    transition: all 0.15s;
+}
+ 
+.etat-pill.sel {
+    background: var(--bordeaux);
+    border-color: var(--bordeaux);
+    color: var(--cream);
+}
+ 
+/*  RESPONSIVE  */
+ 
+@media (max-width: 768px) {
+    .books-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+ 
+    .exc-card {
+        grid-template-columns: 1fr;
+    }
+ 
+    .tabs,
+    .page-header,
+    .tab-panel {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+    }
+}
