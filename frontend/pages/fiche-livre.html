@@ -58,7 +58,9 @@
 
       <div class="field">
         <label for="exch-livre">Livre que tu proposes</label>
-        <input type="text" id="exch-livre" placeholder="Titre du livre">
+        <select id="exch-livre">
+          <option value="" disabled selected>Choisir un de tes livres…</option>
+        </select>
       </div>
 
       <button class="btn btn-primary btn-full mt-2" onclick="envoyerEchange()">

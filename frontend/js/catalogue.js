@@ -41,7 +41,7 @@ function creerCarteLivre(livre) {
                     <span class="book-city">📍 ${livre.ville || ''}</span>
                 </div>
                 <button class="btn-swap"
-                    onclick="event.stopPropagation(); ouvrirModalEchange(${livre.id}, \`${livre.titre}\`, \`${livre.prenom}\`)">
+                        onclick="event.stopPropagation(); ouvrirModalEchange(${livre.id}, '${livre.titre}', '${livre.prenom}')">
                     Proposer un échange
                 </button>
             </div>
@@ -87,10 +87,31 @@ async function rechercher() {
 }
 
 // ── Modal échange ─────────────────────────────────────────────
-function ouvrirModalEchange(livreId, titre, prenom) {
-    document.getElementById('modal-livre-id').value  = livreId;
-    document.getElementById('modal-titre').textContent = titre;
+async function ouvrirModalEchange(livreId, titre, prenom) {
+    document.getElementById('modal-livre-id').value    = livreId;
+    document.getElementById('modal-titre').textContent  = titre;
     document.getElementById('modal-prenom').textContent = prenom;
+
+    // Charge les livres disponibles de l'utilisateur dans le select
+    const select = document.getElementById('exch-livre');
+    select.innerHTML = '<option value="" disabled selected>Choisir un de tes livres…</option>';
+
+    if (estConnecte()) {
+        try {
+            const mesLivres = await getMesLivres();
+            const disponibles = mesLivres.filter(l => l.statut === 'disponible');
+
+            disponibles.forEach(livre => {
+                const option = document.createElement('option');
+                option.value = livre.id;
+                option.textContent = livre.titre;
+                select.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Erreur chargement mes livres :', error);
+        }
+    }
+
     document.getElementById('modal-echange').classList.add('active');
 }
 
@@ -103,17 +124,25 @@ async function envoyerEchange() {
     }
 
     const livreDemandeId  = document.getElementById('modal-livre-id').value;
-    const livreProposeTitre = document.getElementById('exch-livre').value;
+    const livreProposerId = document.getElementById('exch-livre').value;
 
-    if (!livreProposeTitre) {
-        alert('Indique le titre du livre que tu proposes.');
+    if (!livreProposerId) {
+        alert('Choisis un livre à proposer.');
         return;
     }
 
-    // TODO : récupérer l'id du livre proposé via l'API
-    // Pour l'instant on affiche juste un message de succès
-    document.getElementById('modal-echange').classList.remove('active');
-    alert('Demande envoyée !');
+    try {
+        const data = await demanderEchange(livreDemandeId, livreProposerId);
+
+        if (data.id) {
+            document.getElementById('modal-echange').classList.remove('active');
+            alert('Demande envoyée ! 🎉');
+        } else {
+            alert(data.message || 'Erreur lors de la demande.');
+        }
+    } catch (error) {
+        console.error('Erreur envoi échange :', error);
+    }
 }
 
 // ── Chargement initial des livres ─────────────────────────────

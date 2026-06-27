@@ -66,7 +66,7 @@ function afficherLivre(livre) {
 
             <!-- Bouton échange -->
             <button class="btn btn-primary btn-full"
-                    onclick="ouvrirModal(${livre.id}, \`${livre.titre}\`, \`${livre.prenom}\`)">
+                    onclick="ouvrirModal(${livre.id}, '${livre.titre}', '${livre.prenom}')">
                 Proposer un échange
             </button>
 
@@ -79,7 +79,7 @@ function afficherLivre(livre) {
 }
 
 // ── Ouvre la modale d'échange ─────────────────────────────────
-function ouvrirModal(id, titre, prenom) {
+async function ouvrirModal(id, titre, prenom) {
 
     // Redirige vers la connexion si pas connecté
     if (!estConnecte()) {
@@ -90,14 +90,50 @@ function ouvrirModal(id, titre, prenom) {
     document.getElementById('modal-livre-id').value   = id;
     document.getElementById('modal-desc').textContent =
         `Propose un livre à ${prenom} pour obtenir "${titre}".`;
+
+    // Charge les livres disponibles de l'utilisateur dans le select
+    const select = document.getElementById('exch-livre');
+    select.innerHTML = '<option value="" disabled selected>Choisir un de tes livres…</option>';
+
+    try {
+        const mesLivres  = await getMesLivres();
+        const disponibles = mesLivres.filter(l => l.statut === 'disponible');
+
+        disponibles.forEach(livre => {
+            const option = document.createElement('option');
+            option.value = livre.id;
+            option.textContent = livre.titre;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erreur chargement mes livres :', error);
+    }
+
     document.getElementById('modal').classList.add('active');
 }
 
 // ── Envoyer la demande d'échange ──────────────────────────────
-function envoyerEchange() {
-    // TODO : appel API POST /api/echanges
-    document.getElementById('modal').classList.remove('active');
-    alert('Demande envoyée !');
+async function envoyerEchange() {
+    const livreDemandeId  = document.getElementById('modal-livre-id').value;
+    const livreProposerId = document.getElementById('exch-livre').value;
+
+    if (!livreProposerId) {
+        alert('Choisis un livre à proposer.');
+        return;
+    }
+
+    try {
+        const data = await demanderEchange(livreDemandeId, livreProposerId);
+
+        if (data.id) {
+            document.getElementById('modal').classList.remove('active');
+            alert('Demande envoyée ! 🎉');
+        } else {
+            alert(data.message || 'Erreur lors de la demande.');
+        }
+    } catch (error) {
+        console.error('Erreur envoi échange :', error);
+    }
 }
 
 // ── Exécuté au chargement de la page ─────────────────────────
