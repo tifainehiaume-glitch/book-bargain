@@ -213,15 +213,16 @@ async function supprimerMonLivre(id) {
  
 // ── Accepter un échange ───────────────────────────────────────
 async function accepter(id) {
-    const lieu = prompt('Propose un lieu de rencontre (ex: Place Bellecour, Lyon) :');
+    const lieu = prompt('Lieu de rencontre (ex: Place Bellecour, Lyon) :');
     if (!lieu) return;
- 
-    const date = prompt('Date et heure (ex: 28 juin 2025 à 14h30) :');
-    if (!date) return;
- 
+
+    const date = new Date();
+    date.setDate(date.getDate() + 7);
+    const dateFormatee = date.toISOString().slice(0, 19).replace('T', ' ');
+
     try {
-        await accepterEchange(id, lieu, date);
-        chargerMesEchanges(); // Recharge la liste
+        await accepterEchange(id, lieu, dateFormatee);
+        chargerMesEchanges();
     } catch (error) {
         console.error('Erreur acceptation :', error);
     }
