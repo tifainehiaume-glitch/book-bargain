@@ -105,11 +105,15 @@ nav {
  
 .btn-nav {
     background: var(--bordeaux);
-    color: var(--cream);
+    color: var(--cream) !important;
     padding: 0.45rem 1.2rem;
     border-radius: 999px;
-    font-weight: 600;
+    font-weight: 600 !important;
     text-decoration: none;
+}
+
+.nav-links a.btn-nav {
+    color: var(--cream);
 }
 
  
