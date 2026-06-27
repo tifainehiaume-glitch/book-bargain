@@ -66,6 +66,7 @@ class EchangeController {
             );
 
             await Livre.updateStatut(livre_demande_id, 'en_cours');
+            await Livre.updateStatut(livre_propose_id, 'en_cours');
 
             res.status(201).json({ message: 'Demande d\'échange envoyée.', id });
 
