@@ -66,7 +66,7 @@ function afficherLivre(livre) {
 
             <!-- Bouton échange -->
             <button class="btn btn-primary btn-full"
-                    onclick="ouvrirModal(${livre.id}, '${livre.titre}', '${livre.prenom}')">
+                    onclick="ouvrirModal(${livre.id}, \`${livre.titre}\`, \`${livre.prenom}\`)">
                 Proposer un échange
             </button>
 
