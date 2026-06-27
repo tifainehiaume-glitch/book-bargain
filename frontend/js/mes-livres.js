@@ -171,7 +171,14 @@ async function soumettreProposition() {
     const auteur = document.getElementById('p-auteur').value;
     const genre  = document.getElementById('p-genre').value;
     const ville  = document.getElementById('p-ville').value;
-    const etat   = document.querySelector('.etat-pill.sel')?.textContent.trim() || 'tres_bon';
+    const etatTexte = document.querySelector('.etat-pill.sel')?.textContent.trim() || '';
+    const etatMap = {
+    '✨ Neuf': 'neuf',
+    '👍 Très bon': 'tres_bon',
+    '👌 Bon': 'bon',
+    '📖 Acceptable': 'acceptable',
+    };
+    const etat = etatMap[etatTexte] || 'tres_bon';
  
     if (!titre || !auteur || !genre || !ville) {
         alert('Remplis tous les champs obligatoires.');
