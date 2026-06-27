@@ -41,7 +41,10 @@ function creerCarteLivre(livre) {
                     <span class="book-city">📍 ${livre.ville || ''}</span>
                 </div>
                 <button class="btn-swap"
-                        onclick="event.stopPropagation(); ouvrirModalEchange(${livre.id}, '${livre.titre}', '${livre.prenom}')">
+                        data-id="${livre.id}"
+                        data-titre="${livre.titre}"
+                        data-prenom="${livre.prenom}"
+                        onclick="event.stopPropagation(); ouvrirModalEchange(this.dataset.id, this.dataset.titre, this.dataset.prenom)">
                     Proposer un échange
                 </button>
             </div>
