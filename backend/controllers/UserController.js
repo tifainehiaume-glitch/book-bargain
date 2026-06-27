@@ -21,6 +21,7 @@ class UserController {
             res.status(201).json({ message: 'Compte créé avec succès.', id });
 
         } catch (error) {
+            console.error('Erreur register :', error);
             res.status(500).json({ message: 'Erreur serveur.', error: error.message });
         }
     }
