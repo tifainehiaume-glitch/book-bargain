@@ -7,71 +7,143 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/profil.css">
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/profil.js"></script>
+
 </head>
 <body>
 
-  <!--  NAVIGATION  -->
+  <!-- ── NAVIGATION ── -->
   <nav>
     <a class="nav-logo" href="index.html">Book<em>Bargain</em></a>
     <ul class="nav-links">
       <li><a href="catalogue.html">Parcourir</a></li>
       <li><a href="mes-livres.html">Mes livres</a></li>
       <li><a href="profil.html" class="active">Mon profil</a></li>
-      <li><a href="connexion.html" class="btn-nav">Se déconnecter</a></li>
+      <li><a href="#" class="btn-nav" onclick="deconnexion()">Se déconnecter</a></li>
     </ul>
   </nav>
 
-  <!--  EN-TÊTE PROFIL  -->
+  <!-- ── EN-TÊTE PROFIL (rempli par JS) ── -->
   <div class="profile-header">
-    <div class="avatar">L</div>
+
+    <!-- Avatar avec initiale -->
+    <div class="avatar" id="profil-avatar">?</div>
+
+    <!-- Infos utilisateur -->
     <div class="profile-info">
-      <h1>Léa Martin</h1>
-      <p>📍 Lyon · Membre depuis janvier 2025 · ★★★★★</p>
+      <h1 id="profil-nom">Chargement…</h1>
+      <p id="profil-ville"></p>
     </div>
+
+    <!-- Statistiques -->
     <div class="profile-stats">
-      <div><p class="ps-n">7</p><p class="ps-l">Livres proposés</p></div>
-      <div><p class="ps-n">8</p><p class="ps-l">Échanges réalisés</p></div>
+      <div>
+        <p class="ps-n" id="profil-nb-livres">0</p>
+        <p class="ps-l">Livres proposés</p>
+      </div>
+      <div>
+        <p class="ps-n" id="profil-nb-echanges">0</p>
+        <p class="ps-l">Échanges réalisés</p>
+      </div>
     </div>
+
   </div>
 
-  <!--  FORMULAIRES  -->
+  <!-- ── FORMULAIRES ── -->
   <div class="profile-body">
 
-    <!-- Informations personnelles -->
+    <!-- Section : Informations personnelles -->
     <h2 class="section-h">Mes informations</h2>
+
+    <!-- Message retour -->
+    <p id="profil-msg" style="display:none;font-size:.82rem;margin-bottom:.8rem;"></p>
+
     <div class="field-row">
-      <div class="field"><label for="p-prenom">Prénom</label><input type="text" id="p-prenom" value="Léa"></div>
-      <div class="field"><label for="p-nom">Nom</label><input type="text" id="p-nom" value="Martin"></div>
+      <div class="field">
+        <label for="p-prenom">Prénom</label>
+        <input type="text" id="p-prenom">
+      </div>
+      <div class="field">
+        <label for="p-nom">Nom</label>
+        <input type="text" id="p-nom">
+      </div>
     </div>
-    <div class="field"><label for="p-email">E-mail</label><input type="email" id="p-email" value="lea.martin@exemple.fr"></div>
+
+    <div class="field">
+      <label for="p-email">E-mail</label>
+      <input type="email" id="p-email" disabled>
+    </div>
+
     <div class="field-row">
-      <div class="field"><label for="p-ville">Ville</label><input type="text" id="p-ville" value="Lyon"></div>
-      <div class="field"><label for="p-cp">Code postal</label><input type="text" id="p-cp" value="69003"></div>
+      <div class="field">
+        <label for="p-ville">Ville</label>
+        <input type="text" id="p-ville">
+      </div>
+      <div class="field">
+        <label for="p-cp">Code postal</label>
+        <input type="text" id="p-cp">
+      </div>
     </div>
-    <div class="field"><label for="p-bio">Bio (optionnel)</label><textarea id="p-bio">Passionnée de SF et de romans classiques.</textarea></div>
-    <div class="btn-row mt-2"><button class="btn btn-primary">Enregistrer</button></div>
+
+    <div class="field">
+      <label for="p-bio">Bio (optionnel)</label>
+      <textarea id="p-bio" placeholder="Dis-nous en plus sur toi…"></textarea>
+    </div>
+
+    <div class="btn-row mt-2">
+      <button id="btn-save-profil" class="btn btn-primary"
+              onclick="soumettreModifProfil()">
+        Enregistrer
+      </button>
+    </div>
 
     <div class="divider"></div>
 
-    <!-- Mot de passe -->
+    <!-- Section : Mot de passe -->
     <h2 class="section-h">Mot de passe</h2>
-    <div class="field"><label for="mdp-actuel">Mot de passe actuel</label><input type="password" id="mdp-actuel" placeholder="••••••••"></div>
-    <div class="field-row">
-      <div class="field"><label for="mdp-nouveau">Nouveau mot de passe</label><input type="password" id="mdp-nouveau" placeholder="••••••••"></div>
-      <div class="field"><label for="mdp-confirm">Confirmer</label><input type="password" id="mdp-confirm" placeholder="••••••••"></div>
+
+    <!-- Message retour -->
+    <p id="mdp-msg" style="display:none;font-size:.82rem;margin-bottom:.8rem;"></p>
+
+    <div class="field">
+      <label for="mdp-actuel">Mot de passe actuel</label>
+      <input type="password" id="mdp-actuel" placeholder="••••••••">
     </div>
-    <div class="btn-row mt-2"><button class="btn btn-primary">Modifier</button></div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="mdp-nouveau">Nouveau mot de passe</label>
+        <input type="password" id="mdp-nouveau" placeholder="••••••••">
+      </div>
+      <div class="field">
+        <label for="mdp-confirm">Confirmer</label>
+        <input type="password" id="mdp-confirm" placeholder="••••••••">
+      </div>
+    </div>
+
+    <div class="btn-row mt-2">
+      <button class="btn btn-primary" onclick="soumettreChangeMdp()">
+        Modifier
+      </button>
+    </div>
 
     <div class="divider"></div>
 
-    <!-- Suppression -->
+    <!-- Section : Suppression du compte -->
     <h2 class="section-h">Supprimer mon compte</h2>
+
     <p class="text-sm text-mid" style="margin-bottom:1.2rem;line-height:1.6;">
       Cette action est irréversible. Tous tes livres et échanges seront supprimés.
     </p>
-    <button class="btn-danger">Supprimer mon compte</button>
+
+    <button class="btn-danger" onclick="supprimerCompte()">
+      Supprimer mon compte
+    </button>
 
   </div>
+
 
 </body>
 </html>

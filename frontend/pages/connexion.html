@@ -7,19 +7,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/connexion.css">
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
 </head>
 <body>
 
-  <!--  NAVIGATION  -->
+  <!-- ── NAVIGATION ── -->
   <nav>
     <a class="nav-logo" href="index.html">Book<em>Bargain</em></a>
     <ul class="nav-links">
       <li><a href="catalogue.html">Parcourir</a></li>
-      <li><a href="connexion.html" class="active">Connexion</a></li>
+      <li><a href="connexion.html" class="active btn-nav">Se connecter</a></li>
     </ul>
   </nav>
 
-  <!--  CONTENU PRINCIPAL  -->
+  <!-- ── CONTENU PRINCIPAL ── -->
   <main>
     <div class="auth-box">
 
@@ -29,47 +31,91 @@
         <button class="auth-tab" onclick="switchTab('register')">S'inscrire</button>
       </div>
 
-      <!--  FORMULAIRE CONNEXION  -->
+      <!-- ── FORMULAIRE CONNEXION ── -->
       <div class="form-panel active" id="panel-login">
+
         <h1 class="form-title">Bon retour !</h1>
         <p class="form-sub">Content de te revoir parmi les lecteurs.</p>
+
+        <!-- Message d'erreur -->
+        <p id="form-erreur" style="display:none;color:#B00020;font-size:.82rem;margin-bottom:.8rem;"></p>
+
         <div class="field">
           <label for="login-email">E-mail</label>
           <input type="email" id="login-email" placeholder="toi@exemple.fr">
         </div>
+
         <div class="field">
           <label for="login-mdp">Mot de passe</label>
           <input type="password" id="login-mdp" placeholder="••••••••">
           <a class="forgot" href="#">Mot de passe oublié ?</a>
         </div>
-        <button class="btn btn-primary btn-full mt-2" onclick="window.location='profil.html'">Se connecter</button>
+
+        <button id="btn-connexion" class="btn btn-primary btn-full mt-2"
+                onclick="handleConnexion(event)">
+          Se connecter
+        </button>
+
       </div>
 
-      <!--  FORMULAIRE INSCRIPTION  -->
+      <!-- ── FORMULAIRE INSCRIPTION ── -->
       <div class="form-panel" id="panel-register">
+
         <h1 class="form-title">Rejoindre</h1>
         <p class="form-sub">Crée ton compte en deux minutes.</p>
+
+        <!-- Message d'erreur -->
+        <p id="form-erreur-register" style="display:none;color:#B00020;font-size:.82rem;margin-bottom:.8rem;"></p>
+
         <div class="field-row">
-          <div class="field"><label for="reg-prenom">Prénom</label><input type="text" id="reg-prenom" placeholder="Léa"></div>
-          <div class="field"><label for="reg-nom">Nom</label><input type="text" id="reg-nom" placeholder="Martin"></div>
+          <div class="field">
+            <label for="reg-prenom">Prénom</label>
+            <input type="text" id="reg-prenom" placeholder="Léa">
+          </div>
+          <div class="field">
+            <label for="reg-nom">Nom</label>
+            <input type="text" id="reg-nom" placeholder="Martin">
+          </div>
         </div>
-        <div class="field"><label for="reg-email">E-mail</label><input type="email" id="reg-email" placeholder="toi@exemple.fr"></div>
-        <div class="field"><label for="reg-ville">Ville</label><input type="text" id="reg-ville" placeholder="Lyon"></div>
-        <div class="field"><label for="reg-mdp">Mot de passe</label><input type="password" id="reg-mdp" placeholder="8 caractères min."></div>
-        <button class="btn btn-primary btn-full mt-2" onclick="window.location='profil.html'">Créer mon compte</button>
-        <p class="terms">En t'inscrivant, tu acceptes nos <a href="#">Conditions d'utilisation</a>.</p>
+
+        <div class="field">
+          <label for="reg-email">E-mail</label>
+          <input type="email" id="reg-email" placeholder="toi@exemple.fr">
+        </div>
+
+        <div class="field">
+          <label for="reg-ville">Ville</label>
+          <input type="text" id="reg-ville" placeholder="Lyon">
+        </div>
+
+        <div class="field">
+          <label for="reg-mdp">Mot de passe</label>
+          <input type="password" id="reg-mdp" placeholder="8 caractères min.">
+        </div>
+
+        <button id="btn-inscription" class="btn btn-primary btn-full mt-2"
+                onclick="handleInscription(event)">
+          Créer mon compte
+        </button>
+
+        <p class="terms">
+          En t'inscrivant, tu acceptes nos
+          <a href="#">Conditions d'utilisation</a>.
+        </p>
+
       </div>
 
     </div>
   </main>
 
+
   <script>
     function switchTab(tab) {
       document.querySelectorAll('.auth-tab').forEach((t, i) => {
-        t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='register'&&i===1));
+        t.classList.toggle('active', (tab === 'login' && i === 0) || (tab === 'register' && i === 1));
       });
-      document.getElementById('panel-login').classList.toggle('active', tab==='login');
-      document.getElementById('panel-register').classList.toggle('active', tab==='register');
+      document.getElementById('panel-login').classList.toggle('active', tab === 'login');
+      document.getElementById('panel-register').classList.toggle('active', tab === 'register');
     }
   </script>
 

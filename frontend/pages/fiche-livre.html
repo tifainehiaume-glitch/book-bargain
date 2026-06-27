@@ -7,10 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/fiche-livre.css">
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/fiche-livre.js"></script>
 </head>
 <body>
 
-  <!--  NAVIGATION  -->
+  <!-- ── NAVIGATION ── -->
   <nav>
     <a class="nav-logo" href="index.html">Book<em>Bargain</em></a>
     <ul class="nav-links">
@@ -21,74 +24,51 @@
     </ul>
   </nav>
 
-  <!--  FIL D'ARIANE  -->
+  <!-- ── FIL D'ARIANE ── -->
   <div class="breadcrumb">
     <a href="index.html">Accueil</a> ›
     <a href="catalogue.html">Catalogue</a> ›
-    Dune
+    <span id="breadcrumb-titre">Livre</span>
   </div>
 
-  <!--  CONTENU PRINCIPAL  -->
-  <div class="book-hero">
-
-    <!-- Couverture -->
-    <div class="cover-big g-sf">
-      <span class="cover-title">Dune</span>
-    </div>
-
-    <!-- Informations -->
-    <div class="detail">
-      <span class="tag tag-sf" style="width:fit-content;">Science-fiction</span>
-      <div>
-        <h1 class="book-title">Dune</h1>
-        <p class="book-author">Frank Herbert</p>
-      </div>
-      <div class="meta-row">
-        <p class="meta-chip">📍 <strong>Paris 11e</strong></p>
-        <p class="meta-chip">🌍 <strong>Français</strong></p>
-        <p class="meta-chip">📅 <strong>Il y a 3 jours</strong></p>
-      </div>
-      <div><span class="etat-badge">👍 Très bon état</span></div>
-      <div class="description">
-        <p class="desc-label">Description</p>
-        Le classique de la SF de Frank Herbert. Paul Atreides sur la planète Arrakis. Roman lu une seule fois, intérieur impeccable.
-      </div>
-      <div class="owner-row">
-        <div class="owner-avatar">M</div>
-        <div>
-          <p class="owner-name">Marie D.</p>
-          <p class="owner-sub">3 échanges · Paris · ★★★★★</p>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-full"
-              onclick="document.getElementById('modal').classList.add('active')">
-        Proposer un échange
-      </button>
-      <p class="safety-note">🔒 Email transmis uniquement après acceptation mutuelle · Rencontre en lieu public</p>
-    </div>
-
+  <!-- ── CONTENU PRINCIPAL (rempli par fiche-livre.js) ── -->
+  <div class="book-hero" id="book-hero">
+    <p style="color:var(--text-mid);padding:2rem;">Chargement…</p>
   </div>
 
-  <!--  MODAL ÉCHANGE  -->
+  <!-- ── MODAL ÉCHANGE ── -->
   <div class="modal-overlay" id="modal"
        onclick="if(event.target===this)this.classList.remove('active')">
     <div class="modal">
+
       <button class="modal-close"
               onclick="document.getElementById('modal').classList.remove('active')">
         Fermer ✕
       </button>
+
+      <!-- Id du livre (caché) -->
+      <input type="hidden" id="modal-livre-id">
+
       <h3>Proposer un échange</h3>
-      <p>Propose un livre à Marie D. pour obtenir "Dune".</p>
-      <div class="modal-note">🔒 Ton email ne sera transmis qu'après acceptation.</div>
-      <div class="field"><label for="exch-email">Ton e-mail</label><input type="email" id="exch-email" placeholder="toi@exemple.fr"></div>
-      <div class="field"><label for="exch-ville">Ta ville</label><input type="text" id="exch-ville" placeholder="Lyon, Paris…"></div>
-      <div class="field"><label for="exch-livre">Livre que tu proposes</label><input type="text" id="exch-livre" placeholder="Titre du livre"></div>
-      <button class="btn btn-primary btn-full mt-2"
-              onclick="this.closest('.modal-overlay').classList.remove('active')">
+      <p id="modal-desc"></p>
+
+      <div class="modal-note">
+        🔒 Ton email ne sera transmis qu'après acceptation.
+      </div>
+
+      <div class="field">
+        <label for="exch-livre">Livre que tu proposes</label>
+        <input type="text" id="exch-livre" placeholder="Titre du livre">
+      </div>
+
+      <button class="btn btn-primary btn-full mt-2" onclick="envoyerEchange()">
         Envoyer la demande
       </button>
+
     </div>
   </div>
 
+
+
 </body>
-</html
+</html>
