@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS livres (
   auteur         VARCHAR(255) NOT NULL,
   genre          ENUM('roman','sf','jeunesse','manga','bd','essai','autre') NOT NULL,
   langue         VARCHAR(50)  DEFAULT 'Français',
-  etat           ENUM('neuf','tres_bon','bon','acceptable')  NOT NULL,
+  etat           ENUM('neuf','tres_bon','bon','acceptable') NOT NULL,
+  ville          VARCHAR(100),                              -- ← ajouter cette ligne
   photo_url      VARCHAR(500),
   statut         ENUM('disponible','en_cours','echange') DEFAULT 'disponible',
   created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
