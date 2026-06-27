@@ -213,12 +213,16 @@ async function supprimerMonLivre(id) {
  
 // ── Accepter un échange ───────────────────────────────────────
 async function accepter(id) {
-    const lieu = prompt('Lieu de rencontre (ex: Place Bellecour, Lyon) :');
+    const lieu  = prompt('Lieu de rencontre (ex: Place Bellecour, Lyon) :');
     if (!lieu) return;
+
+    const heure = prompt('Heure de rencontre (ex: 14:30) :');
+    if (!heure) return;
 
     const date = new Date();
     date.setDate(date.getDate() + 7);
-    const dateFormatee = date.toISOString().slice(0, 19).replace('T', ' ');
+    const dateStr = date.toISOString().slice(0, 10); // YYYY-MM-DD
+    const dateFormatee = `${dateStr} ${heure}:00`;
 
     try {
         await accepterEchange(id, lieu, dateFormatee);
