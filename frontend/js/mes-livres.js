@@ -33,7 +33,7 @@ function creerCarteMonLivre(livre) {
     } else if (livre.statut === 'en_cours') {
         actions = `
             <div class="book-actions">
-                <button class="btn-xs" onclick="switchTab(1)">Voir l'échange</button>
+                <button class="btn-xs" onclick="sw(1)"">Voir l'échange</button>
             </div>
         `;
     }
@@ -57,6 +57,14 @@ function creerCarteMonLivre(livre) {
  
         </div>
     `;
+}
+
+function tempsEcoule(date) {
+    const maintenant = new Date();
+    const diff = Math.floor((maintenant - new Date(date)) / (1000 * 60 * 60 * 24));
+    if (diff === 0) return "aujourd'hui";
+    if (diff === 1) return "il y a 1 jour";
+    return `il y a ${diff} jours`;
 }
  
 // ── Génère le HTML d'une carte échange ───────────────────────
@@ -102,7 +110,7 @@ function creerCarteEchange(echange) {
                 <h4>${echange.titre_demande} ⇄ ${echange.titre_propose}</h4>
                 <p>
                     Avec <strong>${echange.prenom_demandeur}</strong>
-                    · Il y a quelques jours
+                    · ${tempsEcoule(echange.created_at)}
                 </p>
                 ${badge}
             </div>
@@ -213,16 +221,18 @@ async function supprimerMonLivre(id) {
  
 // ── Accepter un échange ───────────────────────────────────────
 async function accepter(id) {
-    const lieu  = prompt('Lieu de rencontre (ex: Place Bellecour, Lyon) :');
+    const lieu  = prompt('Lieu de rencontre :');
     if (!lieu) return;
 
-    const heure = prompt('Heure de rencontre (ex: 14:30) :');
+    const date  = prompt('Date (format JJ/MM/AAAA) :');
+    if (!date) return;
+
+    const heure = prompt('Heure (format HH:MM) :');
     if (!heure) return;
 
-    const date = new Date();
-    date.setDate(date.getDate() + 7);
-    const dateStr = date.toISOString().slice(0, 10); // YYYY-MM-DD
-    const dateFormatee = `${dateStr} ${heure}:00`;
+    // Convertit JJ/MM/AAAA en YYYY-MM-DD pour MySQL
+    const [jour, mois, annee] = date.split('/');
+    const dateFormatee = `${annee}-${mois}-${jour} ${heure}:00`;
 
     try {
         await accepterEchange(id, lieu, dateFormatee);
@@ -248,6 +258,7 @@ async function refuser(id) {
 function confirmerFait(id) {
     // TODO : marquer l'échange comme terminé + inviter à laisser un avis
     alert('Super ! L\'échange est terminé.');
+    document.getElementById(`echange-${id}`).remove();
 }
  
 // ── Switch onglets ────────────────────────────────────────────
