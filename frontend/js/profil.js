@@ -16,6 +16,15 @@ async function chargerProfil() {
         document.getElementById('profil-nom').textContent      = `${user.prenom} ${user.nom}`;
         document.getElementById('profil-ville').textContent    = `📍 ${user.ville || ''}`;
 
+        // Compte les livres proposés
+        const livres = await getMesLivres();
+        document.getElementById('profil-nb-livres').textContent = livres.length;
+
+        // Compte les échanges réalisés
+        const echanges = await getMesEchanges();
+        const termines = echanges.filter(e => e.statut === 'accepte');
+        document.getElementById('profil-nb-echanges').textContent = termines.length;
+
     } catch (error) {
         console.error('Erreur chargement profil :', error);
     }
