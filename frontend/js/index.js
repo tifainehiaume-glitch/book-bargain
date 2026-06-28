@@ -27,7 +27,7 @@ function creerCarteLivre(livre) {
 
     return `
         <div class="card book-card"
-             onclick="window.location='pages/fiche-livre.html?id=${livre.id}'">
+            onclick="window.location='fiche-livre.html?id=${livre.id}'">
 
             <!-- Couverture -->
             <div class="book-cover" style="background: ${couleur};">
