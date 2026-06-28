@@ -105,13 +105,21 @@ function afficherErreur(id, message) {
 
 // ── Met à jour la nav selon l'état de connexion ───────────────
 function updateNav() {
-    const user = JSON.parse(localStorage.getItem('user'));
     const btnNav = document.querySelector('.btn-nav');
+    if (!btnNav) return;
 
-    if (estConnecte() && btnNav) {
+    if (estConnecte()) {
+        // Utilisateur connecté → affiche "Se déconnecter"
         btnNav.textContent = 'Se déconnecter';
         btnNav.href = '#';
-        btnNav.addEventListener('click', deconnexion);
+        btnNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            deconnexion();
+        });
+    } else {
+        // Utilisateur non connecté → affiche "Se connecter"
+        btnNav.textContent = 'Se connecter';
+        btnNav.href = 'connexion.html';
     }
 }
 
