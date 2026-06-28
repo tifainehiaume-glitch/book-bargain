@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
 
   app:
@@ -8,10 +7,10 @@ services:
       dockerfile: docker/Dockerfile
     container_name: bookbargain
     ports:
-      - "3001:3000"           
+      - "3001:3000"
     volumes:
-      - ../:/app              
-      - /app/node_modules     
+      - ../:/app
+      - /app/node_modules
     environment:
       - NODE_ENV=development
       - MYSQL_HOST=mysql
@@ -22,6 +21,20 @@ services:
     depends_on:
       - mysql
       - mongodb
+    networks:
+      - bookbargain_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: bb_phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
     networks:
       - bookbargain_network
 
@@ -37,8 +50,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql          
-      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql  
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - bookbargain_network
 
@@ -53,8 +66,8 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db               
-      - ./mongodb/init.js:/docker-entrypoint-initdb.d/init.js  
+      - mongo_data:/data/db
+      - ./mongodb/init.js:/docker-entrypoint-initdb.d/init.js
     networks:
       - bookbargain_network
 
