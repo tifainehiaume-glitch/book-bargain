@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Bargain</title>
+  <title>Book Bargain — Accueil</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/index.css">
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/index.js"></script>
 </head>
 <body>
- 
-  <!--  NAVIGATION  -->
+
+  <!-- ── NAVIGATION ── -->
   <nav>
     <a class="nav-logo" href="index.html">Book<em>Bargain</em></a>
     <ul class="nav-links">
@@ -20,8 +23,8 @@
       <li><a href="connexion.html" class="btn-nav">Se connecter</a></li>
     </ul>
   </nav>
- 
-  <!--  HERO  -->
+
+  <!-- ── HERO ── -->
   <section class="hero">
     <p class="eyebrow">Échange de livres · Gratuit</p>
     <h1 class="section-title">
@@ -42,8 +45,8 @@
       <div><p class="stat-n">5</p><p class="stat-l">Villes</p></div>
     </div>
   </section>
- 
-  <!--  COMMENT ÇA MARCHE  -->
+
+  <!-- ── COMMENT ÇA MARCHE ── -->
   <section class="how">
     <div style="max-width:900px;margin:0 auto;">
       <p class="eyebrow">Le processus</p>
@@ -55,34 +58,19 @@
       </div>
     </div>
   </section>
- 
-  <!--  APERÇU DES LIVRES  -->
+
+  <!-- ── APERÇU DES LIVRES (rempli par index.js) ── -->
   <section class="books-preview">
     <div class="books-header">
       <h2 class="section-title">Livres disponibles</h2>
-      <a href="catalogue.html" class="btn btn-outline">Voir tout</a>
+      <a href="pages/catalogue.html" class="btn btn-outline">Voir tout</a>
     </div>
-    <div class="books-grid">
-      <div class="card book-card" onclick="window.location='fiche-livre.html'">
-        <div class="book-cover g-roman"><span class="cover-title">L'Alchimiste</span></div>
-        <div class="book-info"><p class="book-author">Paulo Coelho</p><div class="book-foot"><span class="tag tag-roman">Roman</span><span class="book-city">📍 Lyon</span></div><button class="btn-swap">Proposer un échange</button></div>
-      </div>
-      <div class="card book-card" onclick="window.location='fiche-livre.html'">
-        <div class="book-cover g-sf"><span class="cover-title">Dune</span></div>
-        <div class="book-info"><p class="book-author">Frank Herbert</p><div class="book-foot"><span class="tag tag-sf">SF</span><span class="book-city">📍 Paris</span></div><button class="btn-swap">Proposer un échange</button></div>
-      </div>
-      <div class="card book-card" onclick="window.location='fiche-livre.html'">
-        <div class="book-cover g-manga"><span class="cover-title">Naruto T.1</span></div>
-        <div class="book-info"><p class="book-author">Masashi Kishimoto</p><div class="book-foot"><span class="tag tag-manga">Manga</span><span class="book-city">📍 Nantes</span></div><button class="btn-swap">Proposer un échange</button></div>
-      </div>
-      <div class="card book-card" onclick="window.location='fiche-livre.html'">
-        <div class="book-cover g-jeunesse"><span class="cover-title">Harry Potter T.1</span></div>
-        <div class="book-info"><p class="book-author">J.K. Rowling</p><div class="book-foot"><span class="tag tag-jeunesse">Jeunesse</span><span class="book-city">📍 Lyon</span></div><button class="btn-swap">Proposer un échange</button></div>
-      </div>
+    <div class="books-grid" id="books-grid">
+      <p style="color:var(--text-mid);">Chargement…</p>
     </div>
   </section>
- 
-  <!--  SÉCURITÉ  -->
+
+  <!-- ── SÉCURITÉ ── -->
   <div class="safety">
     <div>
       <h2 class="safety-title">Échanges<br><em>sécurisés</em></h2>
@@ -94,12 +82,13 @@
       <div class="safety-item"><span>🚫</span><div><h4>Zéro paiement</h4><p>Aucune donnée bancaire, 100% gratuit.</p></div></div>
     </div>
   </div>
- 
-  <!--  FOOTER  -->
+
+  <!-- ── FOOTER ── -->
   <footer>
     <p class="foot-logo">Book<em>Bargain</em></p>
     <p>© 2025 · Projet étudiant</p>
   </footer>
- 
+
+
 </body>
 </html>
