@@ -256,9 +256,11 @@ async function refuser(id) {
  
 // ── Confirmer que l'échange a eu lieu ─────────────────────────
 function confirmerFait(id) {
-    // TODO : marquer l'échange comme terminé + inviter à laisser un avis
-    alert('Super ! L\'échange est terminé.');
     document.getElementById(`echange-${id}`).remove();
+
+    if (confirm('L\'échange est terminé ! Veux-tu laisser un avis ?')) {
+        window.location.href = 'profil.html';
+    }
 }
  
 // ── Switch onglets ────────────────────────────────────────────
