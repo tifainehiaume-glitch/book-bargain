@@ -67,8 +67,26 @@ async function chargerLivresAccueil() {
     }
 }
 
+async function chargerStats() {
+    try {
+        const livres = await getLivres();
+        const stats  = document.querySelectorAll('.stat-n');
+
+        // Nombre de livres disponibles
+        stats[0].textContent = livres.length;
+
+        // Nombre de villes uniques
+        const villes = new Set(livres.map(l => l.ville).filter(Boolean));
+        stats[2].textContent = villes.size;
+
+    } catch (error) {
+        console.error('Erreur chargement stats :', error);
+    }
+}
+
 // ── Exécuté au chargement de la page ─────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     updateNav();
     chargerLivresAccueil();
+    chargerStats();
 });
